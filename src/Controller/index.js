@@ -52,4 +52,7 @@ module.exports = {
 
     return res.json(views)
   },
+  showAllProfiles(req,res) {
+    return res.json(users)
+  }
 }
