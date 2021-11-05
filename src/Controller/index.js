@@ -24,12 +24,12 @@ module.exports = {
 
     return res.json(user);
   },
-  showProfile(req, res) {
+    showProfile(req, res) {
     const user = users.find((user) => user.id === req.params.id);
 
     return res.json(user);
   },
-  updateProfile(req,res) {
+    updateProfile(req,res) {
     const user = users.find((user) => user.id === req.params.id);
     
     user.name = req.body.name;
@@ -38,5 +38,18 @@ module.exports = {
     user.favorite_work = req.body.favorite_work
 
     return res.json(user)
+  },
+    deleteProfile(req, res) {
+    const userDelete = users.find((user) => user.id === req.params.id)
+    users = users.filter((user) => user.id !== req.params.id);
+    
+    const views =  {
+      user:{
+        message: 'This profile has been deleted',
+      ...userDelete
+    }
+    }
+
+    return res.json(views)
   },
 }
