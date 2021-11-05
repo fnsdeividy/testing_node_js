@@ -4,10 +4,10 @@ let users = [];
 
 module.exports = {
     createProfile(req, res) {
-        const Id = uuid()
+        
         const { name, age, favorite_artist, favorite_work } = req.body;
         const user = {
-        id: Id,
+        id: uuid(),
         name,
         age,
         favorite_artist,
@@ -23,5 +23,10 @@ module.exports = {
     
 
     return res.json(user);
-  },    
+  },
+  showProfile(req, res) {
+    const user = users.find((user) => user.id === req.params.id);
+
+    return res.json(user);
+  },
 }
